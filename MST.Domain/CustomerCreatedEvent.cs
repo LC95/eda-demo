@@ -1,8 +1,10 @@
 ﻿using System;
 using MST.Domain.Core;
 
-namespace MST.Domain {
-    public class CustomerCreatedEvent : IEvent {
+namespace MST.Domain
+{
+    public class CustomerCreatedEvent : IEvent
+    {
         public CustomerCreatedEvent(string customerName)
         {
             Id = Guid.NewGuid();
@@ -10,8 +12,9 @@ namespace MST.Domain {
             CustomerName = customerName;
         }
 
+        public string CustomerName { get; }
+
         public Guid Id { get; }
         public DateTime TimeStamp { get; }
-        public string CustomerName { get;}
     }
 }
