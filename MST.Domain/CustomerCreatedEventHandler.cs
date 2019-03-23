@@ -3,7 +3,14 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace MST.Domain {
-    public class CustomerCreatedEventHandler : IEventHandler<CustomerCreatedEvent> {
+    public class CustomerCreatedEventHandler : IEventHandler<CustomerCreatedEvent>
+    {
+        private readonly IEventStore _store;
+
+        public CustomerCreatedEventHandler()
+        {
+                
+        }
         public Task<bool> HandleAsync(CustomerCreatedEvent @event, CancellationToken cancellationToken = default)
         {
             return Task.FromResult(true);
