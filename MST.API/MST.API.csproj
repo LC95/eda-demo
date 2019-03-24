@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MST.Domain\MST.Domain.csproj" />
+    <ProjectReference Include="..\MST.EventBus.RabbitMQ\MST.EventBus.RabbitMQ.csproj" />
     <ProjectReference Include="..\MST.EventBus.Simple\MST.EventBus.Simple.csproj" />
     <ProjectReference Include="..\MST.EventHandlerContext.Simple\MST.EventHandlerContext.Simple.csproj" />
     <ProjectReference Include="..\MST.EventStore.Simple\MST.EventStore.Simple.csproj" />

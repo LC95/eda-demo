@@ -7,14 +7,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MST.Domain;
 using MST.Domain.Core;
-using MST.EventBus.Simple;
+using MST.EventBus.RabbitMQ;
 using MST.EventHandlerContext.Simple;
 using MST.EventStore.Simple;
+using RabbitMQ.Client;
 
 namespace MST.API
 {
     public class Startup
     {
+        private const string RBQ_EXCHANGE = "TEST_EXCHANGE";
+        private const string RBQ_QUEUE = "TEST_QUEUE";
         private readonly ILogger<Startup> _logger;
 
         public Startup(IHostingEnvironment env, ILogger<Startup> logger)
@@ -35,6 +38,7 @@ namespace MST.API
         public void ConfigureServices(IServiceCollection services)
         {
             _logger.LogInformation("正在对服务进行配置");
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddLogging(cfg =>
             {
                 cfg.AddConsole();
@@ -45,8 +49,15 @@ namespace MST.API
             var eventHandlerExecutionContext =
                 new EventHandlerExecutionContext(services, sc => sc.BuildServiceProvider());
             services.AddSingleton<IEventHandlerExecutionContext>(eventHandlerExecutionContext);
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSingleton<IEventBus, PassThroughEventBus>();
+            var connectionFactory = new ConnectionFactory {HostName = "localhost"};
+            services.AddSingleton<IEventBus>(sp => new RabbitMqEventBus(
+                sp.GetRequiredService<IEventHandlerExecutionContext>(),
+                sp.GetRequiredService<ILogger<RabbitMqEventBus>>(),
+                connectionFactory,
+                RBQ_EXCHANGE,
+                queueName: RBQ_QUEUE));
+
+//            services.AddSingleton<IEventBus, PassThroughEventBus>();
             services.AddTransient<IEventStore, SimpleEventStore>();
             _logger.LogInformation("已注册到IOC容器");
         }

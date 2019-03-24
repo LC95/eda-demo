@@ -5,57 +5,39 @@ using MST.Domain.Core;
 
 namespace MST.EventBus.Simple
 {
-    public class PassThroughEventBus : IEventBus
+    public class PassThroughEventBus : BaseEventBus
     {
-        private readonly IEventHandlerExecutionContext _context;
         private readonly EventQueue _eventQueue = new EventQueue();
         private readonly ILogger<PassThroughEventBus> _logger;
 
-        public PassThroughEventBus(ILogger<PassThroughEventBus> logger,
-            IEventHandlerExecutionContext context)
+        public PassThroughEventBus(IEventHandlerExecutionContext eventHandlerExecutionContext,
+            ILogger<PassThroughEventBus> logger) : base(eventHandlerExecutionContext)
         {
             _logger = logger;
-            _context = context;
             _eventQueue.EventPushed += EventQueue_EventPushed;
-            _logger.LogInformation("PassThroughEventBus 构造完毕");
         }
 
-        public Task PublishAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default)
-            where TEvent : IEvent
+        public override Task PublishAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default)
         {
-            return Task.Factory.StartNew(() => _eventQueue.Push(@event));
+            return Task.Factory.StartNew(() => _eventQueue.Push(@event), cancellationToken);
         }
 
         private async void EventQueue_EventPushed(object sender, EventProcessedEventArgs e)
         {
-            await _context.HandleEventAsync(e.Event);
+            await EventHandlerExecutionContext.HandleEventAsync(e.Event);
         }
 
+        public override void Subscribe<TEvent, TEventHandler>()
+        {
+            if (!EventHandlerExecutionContext.HandlerRegistered<TEvent, TEventHandler>())
+                EventHandlerExecutionContext.RegisterHandler<TEvent, TEventHandler>();
+        }
 
         #region IDisposable Support
 
-        private bool _disposedValue; // To detect redundant calls
-
-        private void Dispose(bool disposing)
+        protected override void DisposeObject()
         {
-            if (!_disposedValue)
-            {
-                if (disposing) _eventQueue.EventPushed -= EventQueue_EventPushed;
-
-                _logger.LogInformation("PassThroughEventBus 被回收");
-                _disposedValue = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-        }
-
-        public void Subscribe<TEvent, TEventHandler>() where TEvent : IEvent where TEventHandler : IEventHandler<TEvent>
-        {
-            if (!_context.HandlerRegistered<TEvent, TEventHandler>())
-                _context.RegisterHandler<TEvent, TEventHandler>();
+            _logger.LogInformation($"BaseEventBus {GetHashCode()} 被释放");
         }
 
         #endregion
