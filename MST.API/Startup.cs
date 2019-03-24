@@ -8,10 +8,10 @@ using Microsoft.Extensions.Logging;
 using MST.Domain;
 using MST.Domain.Core;
 using MST.EventBus.Simple;
-using MST.EventHandlerContext;
+using MST.EventHandlerContext.Simple;
 using MST.EventStore.Simple;
 
-namespace MST
+namespace MST.API
 {
     public class Startup
     {
@@ -47,7 +47,6 @@ namespace MST
             services.AddSingleton<IEventHandlerExecutionContext>(eventHandlerExecutionContext);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSingleton<IEventBus, PassThroughEventBus>();
-            services.AddTransient<IEventHandler, CustomerCreatedEventHandler>();
             services.AddTransient<IEventStore, SimpleEventStore>();
             _logger.LogInformation("已注册到IOC容器");
         }
@@ -57,6 +56,7 @@ namespace MST
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
             eventBus.Subscribe<CustomerCreatedEvent, CustomerCreatedEventHandler>();
+            eventBus.Subscribe<CustomerCreatedEvent, CustomerCreateEventAnotherHandler>();
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             app.UseMvc();

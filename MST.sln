@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28714.193
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MST", "MST\MST.csproj", "{A91430B8-A9E6-4624-877B-173AD7353B1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MST.API", "MST.API\MST.API.csproj", "{A91430B8-A9E6-4624-877B-173AD7353B1F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MST.Domain", "MST.Domain\MST.Domain.csproj", "{D0192108-D668-49C6-A5EA-A48457E8C037}"
 EndProject
@@ -13,7 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MST.EventBus.Simple", "MST.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MST.EventStore.Simple", "MST.EventStore.Simple\MST.EventStore.Simple.csproj", "{9D2F9AAD-4061-4DEE-95A3-879F71303AA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MST.EventHandlerContext", "MST.EventHandlerContext\MST.EventHandlerContext.csproj", "{05CD0BFC-D538-4932-9309-AA9A80B337FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MST.EventHandlerContext.Simple", "MST.EventHandlerContext.Simple\MST.EventHandlerContext.Simple.csproj", "{05CD0BFC-D538-4932-9309-AA9A80B337FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{B8B3E647-E92A-4820-8299-0552CB8C6D3F}"
+ProjectSection(SolutionItems) = preProject
+	README.md = README.md
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C2BFF276-CDC2-4497-B1FE-809468ABFF3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,5 +58,13 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {092759FB-943A-444D-B6D4-2B2736C1EB9C}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D0192108-D668-49C6-A5EA-A48457E8C037} = {C2BFF276-CDC2-4497-B1FE-809468ABFF3F}
+		{A91430B8-A9E6-4624-877B-173AD7353B1F} = {C2BFF276-CDC2-4497-B1FE-809468ABFF3F}
+		{9D2F9AAD-4061-4DEE-95A3-879F71303AA9} = {C2BFF276-CDC2-4497-B1FE-809468ABFF3F}
+		{AAC7BC07-EF81-4E5D-9CA7-1F2D4BD8E2E1} = {C2BFF276-CDC2-4497-B1FE-809468ABFF3F}
+		{05CD0BFC-D538-4932-9309-AA9A80B337FB} = {C2BFF276-CDC2-4497-B1FE-809468ABFF3F}
+		{87C4BEC7-542D-46B4-904E-8173BC174BEC} = {C2BFF276-CDC2-4497-B1FE-809468ABFF3F}
 	EndGlobalSection
 EndGlobal

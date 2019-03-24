@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MST.Controllers
+namespace MST.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

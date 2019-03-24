@@ -32,12 +32,10 @@ namespace MST.Domain
         {
             _logger.LogInformation("处理用户生成事件开始" + GetHashCode());
 
-            var success = CanHandle(@event)
-                ? HandleAsync((CustomerCreatedEvent) @event, cancellationToken)
-                : Task.FromResult(false);
+            var result = HandleAsync((CustomerCreatedEvent) @event, cancellationToken);
 
             _logger.LogInformation("处理用户生成事件完成" + GetHashCode());
-            return success;
+            return result;
         }
     }
 }

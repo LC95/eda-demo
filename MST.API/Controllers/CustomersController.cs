@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MST.Domain;
 using MST.Domain.Core;
 
-namespace MST.Controllers
+namespace MST.API.Controllers
 {
     [Route("api/[controller]")]
     public class CustomersController : ControllerBase

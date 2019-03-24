@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MST.Domain.Core\MST.Domain.Core.csproj" />
-    <ProjectReference Include="..\MST.EventHandlerContext\MST.EventHandlerContext.csproj" />
+    <ProjectReference Include="..\MST.EventHandlerContext.Simple\MST.EventHandlerContext.Simple.csproj" />
   </ItemGroup>
 
   <ItemGroup>

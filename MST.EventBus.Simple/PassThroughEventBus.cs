@@ -54,7 +54,8 @@ namespace MST.EventBus.Simple
 
         public void Subscribe<TEvent, TEventHandler>() where TEvent : IEvent where TEventHandler : IEventHandler<TEvent>
         {
-            if (!_context.HandlerRegistered<TEvent, TEventHandler>()) _context.RegisterHandler<TEvent, TEventHandler>();
+            if (!_context.HandlerRegistered<TEvent, TEventHandler>()) 
+                _context.RegisterHandler<TEvent, TEventHandler>();
         }
 
         #endregion
