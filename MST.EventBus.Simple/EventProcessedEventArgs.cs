@@ -1,5 +1,5 @@
 ﻿using System;
-using MST.Domain.Core;
+using MST.Domain.Abstraction;
 
 namespace MST.EventBus.Simple
 {

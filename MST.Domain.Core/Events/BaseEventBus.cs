@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MST.Domain.Core
+namespace MST.Domain.Abstraction
 {
     public abstract class BaseEventBus : IEventBus
     {

@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MST.Domain;
-using MST.Domain.Core;
+using MST.Domain.Abstraction;
 using MST.EventBus.RabbitMQ;
 using MST.EventHandlerContext.Simple;
 using MST.EventStore.Simple;
@@ -57,7 +57,6 @@ namespace MST.API
                 RBQ_EXCHANGE,
                 queueName: RBQ_QUEUE));
 
-//            services.AddSingleton<IEventBus, PassThroughEventBus>();
             services.AddTransient<IEventStore, SimpleEventStore>();
             _logger.LogInformation("已注册到IOC容器");
         }

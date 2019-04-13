@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using MST.Domain.Core;
+using MST.Domain.Abstraction;
 
 namespace MST.EventHandlerContext.Simple
 {

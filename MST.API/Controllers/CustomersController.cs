@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MST.Domain;
-using MST.Domain.Core;
+using MST.Domain.Abstraction;
 
 namespace MST.API.Controllers
 {
