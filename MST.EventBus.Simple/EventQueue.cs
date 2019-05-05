@@ -4,6 +4,9 @@ using MST.Domain.Abstraction.Events;
 
 namespace MST.EventBus.Simple
 {
+    /// <summary>
+    /// EventHandler代理
+    /// </summary>
     internal sealed class EventQueue
     {
         public event EventHandler<EventProcessedEventArgs> EventPushed;

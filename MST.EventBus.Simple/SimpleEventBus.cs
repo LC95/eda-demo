@@ -6,13 +6,16 @@ using MST.Domain.Abstraction.Events;
 
 namespace MST.EventBus.Simple
 {
-    public class PassThroughEventBus : BaseEventBus
+    /// <summary>
+    /// 简单事件总线
+    /// </summary>
+    public class SimpleEventBus : BaseEventBus
     {
         private readonly EventQueue _eventQueue = new EventQueue();
-        private readonly ILogger<PassThroughEventBus> _logger;
+        private readonly ILogger<SimpleEventBus> _logger;
 
-        public PassThroughEventBus(IEventHandlerExecutionContext eventHandlerExecutionContext,
-            ILogger<PassThroughEventBus> logger) : base(eventHandlerExecutionContext)
+        public SimpleEventBus(IEventHandlerExecutionContext eventHandlerExecutionContext,
+            ILogger<SimpleEventBus> logger) : base(eventHandlerExecutionContext)
         {
             _logger = logger;
             _eventQueue.EventPushed += EventQueue_EventPushed;

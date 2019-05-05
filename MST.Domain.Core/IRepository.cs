@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using MST.Domain.Abstraction.Events;
+using MST.Domain.Abstraction.Events.DomainEvents;
 
 namespace MST.Domain.Abstraction
 {
