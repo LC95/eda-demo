@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using MST.Domain.Abstraction;
+using MST.Domain.Abstraction.Events;
 
 namespace MST.EventHandlerContext.Simple
 {

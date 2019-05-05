@@ -6,7 +6,7 @@ namespace MST.Domain.Abstraction.Events.DomainEvents
     {
         public AggregateCreatedEvent(Guid newId)
         {
-            this.NewId = newId;
+            NewId = newId;
         }
 
         public Guid NewId { get; set; }

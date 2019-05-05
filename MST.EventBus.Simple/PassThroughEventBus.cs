@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using MST.Domain.Abstraction;
+using MST.Domain.Abstraction.Events;
 
 namespace MST.EventBus.Simple
 {

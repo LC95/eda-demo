@@ -6,8 +6,8 @@ namespace MST.Domain.Abstraction.Events.DomainEvents
     {
         protected DomainEvent()
         {
-            this.Id = Guid.NewGuid();
-            this.TimeStamp = DateTime.UtcNow;
+            Id = Guid.NewGuid();
+            TimeStamp = DateTime.UtcNow;
         }
 
         public Guid Id { get; }

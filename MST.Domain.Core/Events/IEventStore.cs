@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace MST.Domain.Abstraction
+namespace MST.Domain.Abstraction.Events
 {
     public interface IEventStore : IDisposable
     {

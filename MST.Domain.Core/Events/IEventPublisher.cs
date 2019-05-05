@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MST.Domain.Abstraction
+namespace MST.Domain.Abstraction.Events
 {
     public interface IEventPublisher : IDisposable
     {

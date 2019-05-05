@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MST.Domain.Abstraction
+namespace MST.Domain.Abstraction.Events
 {
     public interface IEvent
     {

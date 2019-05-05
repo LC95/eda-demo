@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MST.Domain;
 using MST.Domain.Abstraction;
+using MST.Domain.Abstraction.Events;
 using MST.EventBus.RabbitMQ;
 using MST.EventHandlerContext.Simple;
 using MST.EventStore.Simple;
@@ -34,7 +35,6 @@ namespace MST.API
         public IConfiguration Configuration { get; }
 
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             _logger.LogInformation("正在对服务进行配置");

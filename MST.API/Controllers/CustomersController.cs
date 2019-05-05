@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MST.Domain;
 using MST.Domain.Abstraction;
+using MST.Domain.Abstraction.Events;
 
 namespace MST.API.Controllers
 {
