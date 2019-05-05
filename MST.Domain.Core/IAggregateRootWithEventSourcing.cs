@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using MST.Domain.Abstraction.Events;
 using MST.Domain.Abstraction.Events.DomainEvents;
 
 namespace MST.Domain.Abstraction

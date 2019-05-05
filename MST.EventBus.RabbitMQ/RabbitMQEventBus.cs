@@ -34,7 +34,7 @@ namespace MST.EventBus.RabbitMQ
             _channel = _connection.CreateModel();
             _exchangeName = exchangeName;
             _exchangeType = exchangeType;
-            _queueName = InitializeEventConsumer(queueName);
+            _queueName = InitializeQueue(queueName);
             _autoAck = autoAck;
 
             _channel.ExchangeDeclare(_exchangeName, _exchangeType);
@@ -57,8 +57,12 @@ namespace MST.EventBus.RabbitMQ
                 _channel.QueueBind(_queueName, _exchangeName, typeof(TEvent).FullName);
             }
         }
-
-        private string InitializeEventConsumer(string queue)
+        /// <summary>
+        /// 定义一个Queue, 以及事件接受所需的操作
+        /// </summary>
+        /// <param name="queue"></param>
+        /// <returns></returns>
+        private string InitializeQueue(string queue)
         {
             var localQueueName = queue;
             if (string.IsNullOrEmpty(localQueueName))
