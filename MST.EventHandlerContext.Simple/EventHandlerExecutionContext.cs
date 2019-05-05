@@ -51,7 +51,7 @@ namespace MST.EventHandlerContext.Simple
         /// <param name="eventType"></param>
         /// <param name="handlerType"></param>
         /// <returns></returns>
-        public bool HandlerRegistered(Type eventType, Type handlerType)
+        public bool IsHandlerRegistered(Type eventType, Type handlerType)
         {
             if (_registrations.TryGetValue(eventType, out var handlerTypes))
                 return handlerTypes != null && handlerTypes.Contains(handlerType);
@@ -65,9 +65,9 @@ namespace MST.EventHandlerContext.Simple
         /// <typeparam name="TEvent"></typeparam>
         /// <typeparam name="THandler"></typeparam>
         /// <returns></returns>
-        public bool HandlerRegistered<TEvent, THandler>() where TEvent : IEvent where THandler : IEventHandler<TEvent>
+        public bool IsHandlerRegistered<TEvent, THandler>() where TEvent : IEvent where THandler : IEventHandler<TEvent>
         {
-            return HandlerRegistered(typeof(TEvent), typeof(THandler));
+            return IsHandlerRegistered(typeof(TEvent), typeof(THandler));
         }
 
         /// <summary>

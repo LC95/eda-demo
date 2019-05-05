@@ -51,7 +51,7 @@ namespace MST.EventBus.RabbitMQ
 
         public override void Subscribe<TEvent, TEventHandler>()
         {
-            if (!EventHandlerExecutionContext.HandlerRegistered<TEvent, TEventHandler>())
+            if (!EventHandlerExecutionContext.IsHandlerRegistered<TEvent, TEventHandler>())
             {
                 EventHandlerExecutionContext.RegisterHandler<TEvent, TEventHandler>();
                 _channel.QueueBind(_queueName, _exchangeName, typeof(TEvent).FullName);

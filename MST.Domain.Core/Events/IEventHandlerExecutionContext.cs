@@ -12,9 +12,9 @@ namespace MST.Domain.Abstraction.Events
 
         void RegisterHandler(Type eventType, Type handlerType);
 
-        bool HandlerRegistered(Type eventType, Type handlerType);
+        bool IsHandlerRegistered(Type eventType, Type handlerType);
 
-        bool HandlerRegistered<TEvent, THandler>()
+        bool IsHandlerRegistered<TEvent, THandler>()
             where TEvent : IEvent
             where THandler : IEventHandler<TEvent>;
 

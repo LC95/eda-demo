@@ -33,7 +33,7 @@ namespace MST.EventBus.Simple
 
         public override void Subscribe<TEvent, TEventHandler>()
         {
-            if (!EventHandlerExecutionContext.HandlerRegistered<TEvent, TEventHandler>())
+            if (!EventHandlerExecutionContext.IsHandlerRegistered<TEvent, TEventHandler>())
                 EventHandlerExecutionContext.RegisterHandler<TEvent, TEventHandler>();
         }
 
