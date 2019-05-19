@@ -1,26 +1,23 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MST.Domain;
-using MST.Domain.Abstraction;
 using MST.Domain.Abstraction.Events;
+using MST.Domain.EventHandlers;
+using MST.Domain.Events;
 using MST.EventBus.RabbitMQ;
 using MST.EventHandlerContext.Simple;
 using MST.EventStore.Simple;
-using RabbitMQ.Client;
+
 
 namespace MST.API
 {
     public class Startup
     {
-        private const string RBQ_EXCHANGE = "TEST_EXCHANGE";
-        private const string RBQ_QUEUE = "TEST_QUEUE";
         private readonly ILogger<Startup> _logger;
-
         public Startup(IHostingEnvironment env, ILogger<Startup> logger)
         {
             var builder = new ConfigurationBuilder();
@@ -38,37 +35,17 @@ namespace MST.API
         public void ConfigureServices(IServiceCollection services)
         {
             _logger.LogInformation("正在对服务进行配置");
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddLogging(cfg =>
-            {
-                cfg.AddConsole();
-                cfg.AddConfiguration(Configuration.GetSection("Logging"));
-                cfg.AddEventSourceLogger();
-                cfg.AddDebug();
-            });
-            var eventHandlerExecutionContext =
-                new EventHandlerExecutionContext(services, sc => sc.BuildServiceProvider());
-            services.AddSingleton<IEventHandlerExecutionContext>(eventHandlerExecutionContext);
-            var connectionFactory = new ConnectionFactory {HostName = "localhost"};
-            services.AddSingleton<IEventBus>(sp => new RabbitMqEventBus(
-                sp.GetRequiredService<IEventHandlerExecutionContext>(),
-                sp.GetRequiredService<ILogger<RabbitMqEventBus>>(),
-                connectionFactory,
-                RBQ_EXCHANGE,
-                queueName: RBQ_QUEUE));
-
+            services.AddMvc();
+            services.AddSingleton<IEventHandlerExecutionContext>(new EventHandlerExecutionContext(services, s => s.BuildServiceProvider()));
+            services.AddRabbitMQEventBus("Exchange", "AddTest");
             services.AddTransient<IEventStore, SimpleEventStore>();
-            _logger.LogInformation("已注册到IOC容器");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
-            eventBus.Subscribe<CustomerCreatedEvent, CustomerCreatedEventHandler>();
-            eventBus.Subscribe<CustomerCreatedEvent, CustomerCreateEventAnotherHandler>();
-            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
-
+            eventBus.Subscribe<AddCustomerEvent, AddCustomerEventHandler>();
             app.UseMvc();
         }
     }

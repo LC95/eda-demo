@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C2BFF276-CDC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MST.EventBus.RabbitMQ", "MST.EventBus.RabbitMQ\MST.EventBus.RabbitMQ.csproj", "{B8C928CF-FE07-4BB6-AF5B-1909E91367E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MST.Services.Notification", "MST.Services.Notification\MST.Services.Notification.csproj", "{B6C3EC3F-E4BB-4352-8268-A70EFA9DBE5B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,10 @@ Global
 		{B8C928CF-FE07-4BB6-AF5B-1909E91367E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8C928CF-FE07-4BB6-AF5B-1909E91367E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8C928CF-FE07-4BB6-AF5B-1909E91367E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6C3EC3F-E4BB-4352-8268-A70EFA9DBE5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6C3EC3F-E4BB-4352-8268-A70EFA9DBE5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6C3EC3F-E4BB-4352-8268-A70EFA9DBE5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6C3EC3F-E4BB-4352-8268-A70EFA9DBE5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +76,7 @@ Global
 		{9D2F9AAD-4061-4DEE-95A3-879F71303AA9} = {C2BFF276-CDC2-4497-B1FE-809468ABFF3F}
 		{05CD0BFC-D538-4932-9309-AA9A80B337FB} = {C2BFF276-CDC2-4497-B1FE-809468ABFF3F}
 		{B8C928CF-FE07-4BB6-AF5B-1909E91367E7} = {C2BFF276-CDC2-4497-B1FE-809468ABFF3F}
+		{B6C3EC3F-E4BB-4352-8268-A70EFA9DBE5B} = {C2BFF276-CDC2-4497-B1FE-809468ABFF3F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {092759FB-943A-444D-B6D4-2B2736C1EB9C}

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MST.Domain;
 using MST.Domain.Abstraction;
 using MST.Domain.Abstraction.Events;
+using MST.Domain.Events;
 
 namespace MST.API.Controllers
 {
@@ -19,8 +20,7 @@ namespace MST.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCustomer()
         {
-            var customer = new Customer {Name = "XiaoMa"};
-            await _eventBus.PublishAsync(new CustomerCreatedEvent(customer.Name));
+            await _eventBus.PublishAsync(new AddCustomerEvent());
             return new ObjectResult(true);
         }
     }

@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using MST.Domain.Abstraction;
 using MST.Domain.Abstraction.Events;
 
 namespace MST.EventStore.Simple
@@ -24,7 +23,7 @@ namespace MST.EventStore.Simple
 
         public Task SaveEventAsync<TEvent>(TEvent @event) where TEvent : IEvent
         {
-            _logger.LogInformation(@event.Id + " " + @event.TimeStamp);
+            _logger.LogInformation("事件 " + @event.Id + " 被存储" + @event.TimeStamp);
             return Task.CompletedTask;
         }
     }

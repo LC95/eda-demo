@@ -15,30 +15,26 @@ namespace MST.EventBus.RabbitMQ
         private readonly bool _autoAck;
         private readonly IModel _channel;
         private readonly IConnection _connection;
-        private readonly IConnectionFactory _connectionFactory;
         private readonly string _exchangeName;
-        private readonly string _exchangeType;
         private readonly ILogger<RabbitMqEventBus> _logger;
         private readonly string _queueName;
 
 
         public RabbitMqEventBus(IEventHandlerExecutionContext eventHandlerExecutionContext,
             ILogger<RabbitMqEventBus> logger,
-            IConnectionFactory connectionFactory, string exchangeName,
-            string exchangeType = ExchangeType.Fanout, string queueName = null, bool autoAck = false) : base(
+            IConnectionFactory connectionFactory, RabbitMQConfig config) : base(
             eventHandlerExecutionContext)
         {
             _logger = logger;
-            _connectionFactory = connectionFactory;
-            _connection = _connectionFactory.CreateConnection();
+            _connection = connectionFactory.CreateConnection();
             _channel = _connection.CreateModel();
-            _exchangeName = exchangeName;
-            _exchangeType = exchangeType;
-            _queueName = InitializeQueue(queueName);
-            _autoAck = autoAck;
+            _exchangeName = config.RmqExchange;
+            var exchangeType = config.RmqExchangeType;
+            _queueName = InitializeQueue(config.RmqQueue);
+            _autoAck = config.AutoAck;
 
-            _channel.ExchangeDeclare(_exchangeName, _exchangeType);
-            _logger.LogInformation("RabbitMQEventbus构造完成");
+            _channel.ExchangeDeclare(_exchangeName, exchangeType);
+            _logger.LogInformation("RabbitMQEvents构造完成");
         }
 
 
@@ -57,6 +53,7 @@ namespace MST.EventBus.RabbitMQ
                 _channel.QueueBind(_queueName, _exchangeName, typeof(TEvent).FullName);
             }
         }
+
         /// <summary>
         /// 定义一个Queue, 以及事件接受所需的操作
         /// </summary>

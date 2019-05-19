@@ -1,5 +1,4 @@
 ﻿using System;
-using MST.Domain.Abstraction;
 using MST.Domain.Abstraction.Events;
 
 namespace MST.EventBus.Simple
@@ -9,7 +8,7 @@ namespace MST.EventBus.Simple
     /// </summary>
     internal sealed class EventQueue
     {
-        public event EventHandler<EventProcessedEventArgs> EventPushed;
+        public event System.EventHandler<EventProcessedEventArgs> EventPushed;
 
         public void Push(IEvent @event)
         {
