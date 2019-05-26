@@ -1,5 +1,10 @@
 # 事件驱动架构Demo
 
+## 准备
+
+1. 需要RabbitMQ
+2. .NET Core 2.2开发环境
+
 ## 运行
 
 1. 运行MST.API, 运行MST.Serivces.Notification(可选)
